@@ -13,7 +13,9 @@ Drug-target affinity (DTA) models perform well on curated benchmarks but fail un
 ## Running the pipeline
 
 Create the conda env for CPU usage:
-```conda env create -f devops/env_cpu.yml``` 
+```
+conda env create -f devops/env_cpu.yml
+``` 
 
 Create the conda env for GPU usage (preferred):
 ```
@@ -28,7 +30,7 @@ conda install ipykernel
 ```
 python -m ipykernel install --user --name robust_dta_env --display-name "Python (your_env_name)"
 ```
-**GPU:**
+**GPU (preferred):**
 ```
 python -m ipykernel install --user --name robust_dta --display-name "Python (your_env_name)"
 ```
