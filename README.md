@@ -19,7 +19,6 @@ Create the conda env for GPU usage (preferred):
 ```
 conda env create -f devops/env_gpu.yml
 ```
-\
 
 Export to kernel:
 ```
