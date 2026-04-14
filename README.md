@@ -13,17 +13,26 @@ Drug-target affinity (DTA) models perform well on curated benchmarks but fail un
 ## Running the pipeline
 
 Create the conda env for CPU usage:
-```conda env create -f devops/env_cpu.yml```
+```conda env create -f devops/env_cpu.yml``` 
 
 Create the conda env for GPU usage (preferred):
-```conda env create -f devops/env_gpu.yml```
+```
+conda env create -f devops/env_gpu.yml
+```
+\
 
 Export to kernel:
-```conda install ipykernel```
+```
+conda install ipykernel
+```
 **CPU:**
-```python -m ipykernel install --user --name robust_dta_env --display-name "Python (your_env_name)"```
+```
+python -m ipykernel install --user --name robust_dta_env --display-name "Python (your_env_name)"
+```
 **GPU:**
-```python -m ipykernel install --user --name robust_dta --display-name "Python (your_env_name)"```
+```
+python -m ipykernel install --user --name robust_dta --display-name "Python (your_env_name)"
+```
 
 ## Phase 1 — Data Ingestion & Harmonization
 
