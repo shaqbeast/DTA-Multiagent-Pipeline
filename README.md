@@ -1,7 +1,4 @@
 # Robust Drug-Target Affinity for Precision Drug Discovery
-
-**Subtitle:** Uncertainty-Aware, Budget-Constrained Compound Ranking for Wet-Lab Decision Making
-
 ---
 
 ## Overview
@@ -50,8 +47,6 @@ python -m ipykernel install --user --name robust_dta --display-name "Python (you
 4. Deduplicate compound–target pairs and flag conflicting labels arising from different assay conditions.
 5. Generate **scaffold-aware** train/validation/test splits using RDKit's `MurckoScaffold`, ensuring test-set scaffolds are completely unseen during training.
 
-**Key libraries:** `PyTDC`, `RDKit`, `pandas`
-
 ---
 
 ## Phase 2 — Molecular Featurization
@@ -67,8 +62,6 @@ python -m ipykernel install --user --name robust_dta --display-name "Python (you
    - Pretrained **ESM-2** embeddings (recommended for performance)
    - Learned 1D-CNN encoder (lighter weight)
 10. Package all features into PyTorch Geometric `Data` objects and build `DataLoader` pipelines with scaffold-aware batch sampling.
-
-**Key libraries:** `RDKit`, `torch_geometric`, `fair-esm`
 
 ---
 
@@ -88,8 +81,6 @@ python -m ipykernel install --user --name robust_dta --display-name "Python (you
 15. Wrap the model with **MC Dropout** — at inference, perform ~30 stochastic forward passes. The variance across passes estimates epistemic uncertainty.
 16. Optionally train a **deep ensemble** of 3–5 independently initialized models for improved calibration and robustness.
 
-**Key libraries:** `torch`, `torch_geometric`, `fair-esm`
-
 ---
 
 ## Phase 4 — Distribution Shift Detection & OOD Flagging
@@ -103,15 +94,6 @@ python -m ipykernel install --user --name robust_dta --display-name "Python (you
     - Novel scaffold (structural novelty)
     - Unusual assay condition (metadata shift)
     - Both
-
-**Key libraries:** `scikit-learn`, `numpy`, `torch`
-
----
-
-## Phase 5 — Budget-Constrained Ranking & Selection
-
-**Goal:** Rank candidate compounds by expected utility and select the best set to test within a fixed experimental budget.
-
 21. Define the **utility function:**
     ```
     U(x) = predicted_affinity(x) − λ · total_uncertainty(x)
@@ -123,7 +105,7 @@ python -m ipykernel install --user --name robust_dta --display-name "Python (you
 
 ---
 
-## Phase 6 — Evaluation & Transparent Reporting
+## Phase 5 — Evaluation & Transparent Reporting
 
 **Goal:** Rigorously measure pipeline performance under realistic conditions and report degradation honestly.
 
@@ -137,33 +119,6 @@ python -m ipykernel install --user --name robust_dta --display-name "Python (you
     - Uncertainty-aware ranking vs. naive "sort by predicted affinity"
     - MC Dropout vs. deep ensemble vs. combined
     - Effect of λ on hit rate vs. coverage tradeoff
-
----
-
-## Specialized Agents Summary
-
-| Agent | Responsibility |
-|---|---|
-| **Molecule Agent** | SMILES parsing, graph encoding, fingerprint generation |
-| **Uncertainty Agent** | MC Dropout inference, calibration scoring, OOD detection |
-| **Selection Agent** | Budget-aware ranking, abstention policy, utility optimization |
-
----
-
-## Environment & Dependencies
-
-```
-python >= 3.10
-torch >= 2.0
-torch_geometric
-rdkit
-PyTDC
-fair-esm
-scikit-learn
-pandas
-numpy
-matplotlib
-```
 
 ---
 
